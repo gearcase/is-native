@@ -42,7 +42,7 @@
     "mocha": "^2.4.5"
   },
   "dependencies": {
-    "is-nil": "file:///Users/Johnny/Documents/github.bubkoo/is-nil",
-    "to-source-code": "file:///Users/Johnny/Documents/github.bubkoo/to-source-code"
+    "is-nil": "^1.0.0",
+    "to-source-code": "^1.0.0"
   }
 }
