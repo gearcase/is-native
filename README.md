@@ -35,9 +35,9 @@ isNative(function () { console.log(123); });
 - [is-nil](https://github.com/gearcase/is-nil) - Checks if the given value is null or undefined.
 - [is-null](https://github.com/gearcase/is-null) - Checks if the given value is null.
 - [is-window](https://github.com/gearcase/is-window) - Checks if the given value is a window object.
-- [is-array-like](https://github.com/gearcase/is-array-like) - Checks if the given value is an array or an array-like object.
 - [is-index](https://github.com/gearcase/is-index) - Checks if the given value is a valid array-like index.
 - [is-length](https://github.com/gearcase/is-length) - Checks if the given value is a valid array-like length.
+- [is-array-like](https://github.com/gearcase/is-array-like) - Checks if the given value is an array or an array-like object.
 
 
 ## Contributing
