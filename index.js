@@ -5,9 +5,12 @@ var toSource = require('to-source-code');
 
 function isObject(value) {
 
-  var type = typeof value;
+  if (!value) {
+    return false;
+  }
 
-  return !!value && (type === 'object' || type === 'function');
+  var type = typeof value;
+  return type === 'object' || type === 'function';
 }
 
 // Checks if `value` is a host object in IE < 9.
@@ -17,7 +20,6 @@ function isHostObject(value) {
   // despite having improperly defined `toString` methods.
 
   var result = false;
-
   if (!isNil(value) && typeof value.toString !== 'function') {
     try {
       result = ('' + value) !== '';
@@ -27,9 +29,7 @@ function isHostObject(value) {
 }
 
 function isFunction(value) {
-
   var tag = isObject(value) ? Object.prototype.toString.call(value) : '';
-
   return tag === '[object Function]' || tag === '[object GeneratorFunction]';
 }
 
@@ -40,23 +40,23 @@ module.exports = function (value) {
     return false;
   }
 
-  var pattern;
-
   if (isFunction(value) || isHostObject(value)) {
 
-    var toString       = Function.prototype.toString;
+    var fnToString     = Function.prototype.toString;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var reRegExpChar   = /[\\^$.*+?()[\]{}|]/g;
 
-    pattern = new RegExp('^' +
-      toString.call(hasOwnProperty)
-        .replace(reRegExpChar, '\\$&')
+    var reIsNative = new RegExp('^' +
+      fnToString
+        .call(hasOwnProperty)
+        .replace(/[\\^$.*+?()[\]{}|]/g, '\\$&')
         .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
     );
-  } else {
-    // detect host constructors (Safari).
-    pattern = /^\[object .+?Constructor\]$/;
+
+    return reIsNative.test(toSource(value));
   }
 
-  return pattern.test(toSource(value));
+  // used to detect host constructors (Safari > 4; really typed array specific)
+  var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+  return reIsHostCtor.test(toSource(value));
 };

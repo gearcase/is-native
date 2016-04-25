@@ -21,11 +21,23 @@ $ npm install --save is-native
 ```js
 var isNative = require('is-native');
 
+var obj = { a: 1 };
+var arr = [1, 2, 3];
+
+isNative(obj.valueOf); // => true
+isNative(arr.push);    // => true
 isNative(Math.min);    // => true
 isNative(console.log); // => true
 
 isNative(function () { console.log(123); });              
 // => false
+
+isNative();          // => false
+isNative(obj);       // => false
+isNative(arr);       // => false
+isNative(/x/);       // => false
+isNative(new Date);  // => false
+isNative(new Error); // => false
 ```
 
 
