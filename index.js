@@ -1,5 +1,14 @@
 'use strict';
 
+/*
+ * Checks if the given value is a native function.
+ *
+ * ref:
+ * - https://davidwalsh.name/detect-native-function
+ * - https://github.com/lodash/lodash/blob/master/lodash.js#L11115
+ */
+
+
 var isNil    = require('is-nil');
 var toSource = require('to-source-code');
 
