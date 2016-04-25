@@ -2,7 +2,6 @@
 
 > Checks if the given value is a native function.
 
-
 [![MIT License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat-square)](https://github.com/gearcase/is-native/blob/master/LICENSE)
 
 [![build:?](https://img.shields.io/travis/gearcase/is-native/master.svg?style=flat-square)](https://travis-ci.org/gearcase/is-native)
@@ -14,7 +13,6 @@
 ```
 $ npm install --save is-native 
 ```
-
 
 ## Usage
 
@@ -39,7 +37,6 @@ isNative(/x/);       // => false
 isNative(new Date);  // => false
 isNative(new Error); // => false
 ```
-
 
 ## Related
 
